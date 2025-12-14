@@ -70,3 +70,29 @@ EXIT: rsi(close,14) < 30
   }
 }
 Trades: []
+```
+
+### DSL Grammar
+
+The DSL is parsed using a formal grammar with Lark and consists of two required blocks:
+
+ENTRY: <expression>
+EXIT: <expression>
+
+### Expressions
+Expressions are built using:
+- Boolean operators: `AND`, `OR`
+- Comparison operators: `> < >= <= ==`
+
+Example:
+close > sma(close,20) AND volume > 1000000
+
+### Values
+A value can be:
+- Field: `close`, `volume`
+- Number: `20`, `1000000`
+- Function call (indicator):
+sma(close,20)
+rsi(close,14)
+
+The grammar is deterministic and produces an Abstract Syntax Tree (AST) for code generation and execution.
