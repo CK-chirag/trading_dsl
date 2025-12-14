@@ -1,0 +1,27 @@
+start: entry_block exit_block
+
+entry_block: "ENTRY:" expr
+exit_block: "EXIT:" expr
+
+?expr: expr "OR" expr   -> or_op
+     | expr "AND" expr  -> and_op
+     | comparison
+
+comparison: value OP value
+
+?value: function_call
+      | VAR        -> var
+      | NUMBER     -> num
+
+function_call: NAME "(" arg_list ")"
+arg_list: value ("," value)*
+
+OP: ">" | "<" | ">=" | "<=" | "=="
+
+VAR: "close" | "volume"
+
+NAME: "sma" | "rsi"
+
+%import common.NUMBER
+%import common.WS
+%ignore WS
