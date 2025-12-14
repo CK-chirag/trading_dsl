@@ -1,6 +1,6 @@
 ## Trading_dsl
 ```bash
-python run_pipeline.py
+python demo.py
 ```
 Output of demo.py
 ```bash
